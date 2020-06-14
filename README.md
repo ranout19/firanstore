@@ -1,4 +1,4 @@
-Firan store aplikasi Point Of Sales (POS)
+#Firan store aplikasi Point Of Sales (POS)
 
 Dibuat dengan : 
 - PHP 7.3 
