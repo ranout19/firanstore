@@ -58,9 +58,7 @@ class Category extends CI_Controller
                 $this->session->set_flashdata('success', 'diubah');
             }
             redirect('category');
-        }
-
-        
+        }        
     }
     public function del($id)
     {

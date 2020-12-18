@@ -1,3 +1,23 @@
+const cobatoast = $('.cobatoast').on('click', function(e) {
+  e.preventDefault();
+  const toast = Swal.mixin({
+    toast: true,
+    position: 'top-end',
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    onOpen: (toast) => {
+      toast.addEventListener('mouseenter', Swal.stopTimer)
+      toast.addEventListener('mouseleave', Swal.resumeTimer)
+    }
+  })
+
+  toast.fire({
+    type: 'success',
+    title: 'Signed in successfully'
+  })
+})
+
 const transaction = $('.transaction').data('transaction');
 const redirect = $('.transaction').data('redirect');
 if (transaction) {
@@ -21,15 +41,54 @@ if (cantdelete) {
       timer: 2000
     });
 }
-const flashdata = $('.flashdata').data('flashdata');
-if (flashdata) {
-	Swal.fire({
-      type: 'success',
-      title: 'Berhasil!',
-      text: 'Data '+ flashdata,
+const karmaloginfail = $('.karmaloginfail').data('karmaloginfail');
+if (karmaloginfail) {
+  Swal.fire({
+      type: 'error',
+      title: 'Fail!',
+      text: karmaloginfail,
       showConfirmButton: false,
       timer: 2000
     });
+}
+const karmacartsuccess = $('.karmacartsuccess').data('karmacartsuccess');
+if (karmacartsuccess) {
+  Swal.fire({
+      type: 'success',
+      title: 'Success!',
+      text: karmacartsuccess,
+      showConfirmButton: false,
+      timer: 2000
+    });
+}
+const karmacheckoutsuccess = $('.karmacheckoutsuccess').data('karmacheckoutsuccess');
+if (karmacheckoutsuccess) {
+  Swal.fire({
+      type: 'success',
+      title: 'Success!',
+      text: karmacheckoutsuccess,
+      showConfirmButton: false,
+      timer: 2000
+    });
+}
+
+const flashdata = $('.flashdata').data('flashdata');
+if (flashdata) {
+  const toast = Swal.mixin({
+    toast: true,
+    position: 'top-end',
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    onOpen: (toast) => {
+      toast.addEventListener('mouseenter', Swal.stopTimer)
+      toast.addEventListener('mouseleave', Swal.resumeTimer)
+    }
+  })
+  toast.fire({
+    type: 'success',
+    title: 'Data berhasil '+ flashdata
+  })
 }
 
 const hapus = $('.hapus').on('click', function(e) {

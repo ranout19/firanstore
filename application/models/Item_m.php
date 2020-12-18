@@ -13,6 +13,25 @@ class Item_m extends CI_Model
         $this->db->order_by('barcode', 'asc');
         return $this->db->get();
     }
+    public function getItemOrder($order)
+    {
+        $this->db->select('item.*, category.name as categoryname, unit.name as unitname');
+        $this->db->from('item');
+        $this->db->join('category', 'category.category_id = item.category_id');
+        $this->db->join('unit', 'unit.unit_id = item.unit_id');
+        $this->db->order_by('created', $order);
+        $this->db->limit(8);
+        return $this->db->get();
+    }
+    public function getItemBarcode($barcode)
+    {
+        $this->db->select('item.*, category.name as categoryname, unit.name as unitname');
+        $this->db->from('item');
+        $this->db->join('category', 'category.category_id = item.category_id');
+        $this->db->join('unit', 'unit.unit_id = item.unit_id');
+        $this->db->where('barcode', $barcode);
+        return $this->db->get();
+    }
     public function add($post)
     {
         $data = [
@@ -20,8 +39,10 @@ class Item_m extends CI_Model
             'name' => $post['itemname'],
             'category_id' => $post['category'],
             'unit_id' => $post['unit'],
-            'price' => $post['price'],
-            'image' => $post['image']
+            'gudang' => $post['gudang'],
+            'rak' => $post['rak'],
+            'kolom' => $post['kolom'],
+            'detail' => $post['detail']
         ];
         $this->db->insert('item', $data);
     }
@@ -32,12 +53,12 @@ class Item_m extends CI_Model
             'name' => $post['itemname'],
             'category_id' => $post['category'],
             'unit_id' => $post['unit'],
-            'price' => $post['price'],
+            'gudang' => $post['gudang'],
+            'rak' => $post['rak'],
+            'kolom' => $post['kolom'],
+            'detail' => $post['detail'],
             'updated' => date('Y-m-d h:i:s')
         ];
-        if ($post['image'] != null) {
-            $data['image'] = $post['image'];
-        }
         $this->db->where('item_id', $post['item_id']);
         $this->db->update('item', $data);
     }

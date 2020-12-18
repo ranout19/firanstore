@@ -1,5 +1,5 @@
 <div class="page-header">
-    <div class="row align-items-end" style="background: white; border-radius: 3px; box-shadow: 0 1px 15px rgba(0,0,0,0.04), 0 1px 6px rgba(0,0,0,0.04); ">
+    <div class="row align-items-end mx-0" style="background: white; border-radius: 3px; box-shadow: 0 1px 15px rgba(0,0,0,0.04), 0 1px 6px rgba(0,0,0,0.04); ">
         <div class="col-lg-8">
             <div class="page-header-title">
                 <i class="ik ik-shopping-cart"></i>
@@ -176,8 +176,8 @@
                 <h6 class="modal-title" id="demoModalLabel">Product Item</h6>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             </div>
-            <div class="modal-body table-responsive">
-            <table id="data_table" class="table table-responsive table-hover" style="width: 100%;">
+            <div class="modal-body">
+            <table id="data_table" class="table table-hover w-100">
                 <thead>
                     <tr>
                         <th class="nosort" style="border:none;width: 70px;">Barcode</th>

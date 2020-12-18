@@ -7,7 +7,7 @@
 	}
 </style>
 <div class="page-header">
-    <div class="row align-items-end" style="background: white; border-radius: 3px; box-shadow: 0 1px 15px rgba(0,0,0,0.04), 0 1px 6px rgba(0,0,0,0.04);">
+    <div class="row align-items-end mx-0" style="background: white; border-radius: 3px; box-shadow: 0 1px 15px rgba(0,0,0,0.04), 0 1px 6px rgba(0,0,0,0.04);">
         <div class="col-lg-8">
             <div class="page-header-title">
                 <i class="ik ik-dollar-sign"></i>
@@ -44,7 +44,7 @@
                 </form>
             </div>
             <div class="card-body">
-                <table id="data_table" class="table table-hover">
+                <table id="data_table" class="table table-hover w-100">
                     <thead>
                         <tr>
                             <th class="nosort" style="border:none;">No</th>
@@ -54,7 +54,7 @@
                             <th class="nosort" style="border:none;">Total</th>
                             <th class="nosort" style="border:none;">Note</th>
                             <th class="nosort" style="border:none;">Cashier</th>
-                            <th class="nosort" style="border:none; float: right;">Action</th>
+                            <th class="nosort" style="border:none; float: right;">Opsi</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -85,7 +85,7 @@
                             </td>
                             <td>
                                 <div class="table-actions float-right">
-                                    <a class="btn btn-sm btn-info" style="width: 33px; margin-left: 0px;margin-right: 6px;" type="button" id="detailitem" data-toggle="modal" data-target="#modal-detail" 
+                                    <a class="btn btn-sm btn-info" style="display: inline-flex; padding: 8px;" type="button" id="detailitem" data-toggle="modal" data-target="#modal-detail" 
                                     data-invoice="<?=$data->invoice?>"
                                     data-date="<?=$data->date?>"
                                     data-user="<?=$data->user?>"
@@ -95,7 +95,7 @@
                                     data-cash="<?=idr($data->cash)?>"
                                     data-change="<?=idr($data->change)?>"
                                     data-note="<?=$data->note?>"
-                                    ><i class="ik ik-eye text-white" style="position: absolute;right:16px;"></i></a>
+                                    ><i class="ik ik-eye text-white" style="margin-top: -1px !important;margin-right: -1px !important;"></i></a>
                                 </div>
                             </td>
                         </tr>

@@ -1,5 +1,5 @@
 <div class="page-header">
-    <div class="row align-items-end" style="background: white; border-radius: 3px; box-shadow: 0 1px 15px rgba(0,0,0,0.04), 0 1px 6px rgba(0,0,0,0.04);">
+    <div class="row align-items-end mx-0" style="background: white; border-radius: 3px; box-shadow: 0 1px 15px rgba(0,0,0,0.04), 0 1px 6px rgba(0,0,0,0.04);">
         <div class="col-lg-8">
             <div class="page-header-title">
             	<i class="ik ik-user"></i>

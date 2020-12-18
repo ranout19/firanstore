@@ -1,5 +1,12 @@
-<?php 
-
+<?php
+    function notLoginKarma()
+    {
+        $ci =& get_instance();
+        $userSession = $ci->session->userdata('karma_id');
+        if (!$userSession) {
+            redirect('karma/login');
+        }
+    }
     function alreadyLogin()
     {
         $ci =& get_instance();
@@ -26,7 +33,7 @@
     }
     function idr($rp)
     {
-        $result = "Rp.".number_format($rp);
+        $result = "Rp ".number_format($rp);
         return $result;
     }
 ?>

@@ -22,6 +22,10 @@ class Item extends CI_Controller
         $item->unit_id = null;
         $item->price = null;
         $item->image = null;
+        $item->gudang = null;
+        $item->rak = null;
+        $item->kolom = null;
+        $item->detail = null;
         $category = $this->category_m->getCategory();
         $unit = $this->unit_m->getUnit();
         $data = [
