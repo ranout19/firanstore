@@ -21,7 +21,7 @@
   <style type="text/css">
     @font-face {
       font-family: semua;
-      src: url(<?= base_url() ?>assets/font/Montserrat-Regular.ttf);
+      src: url('<?= base_url() ?>assets/font/Montserrat-Regular.ttf');
     }
 
     * {
@@ -33,7 +33,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      background: linear-gradient(rgba(0, 0, 0, .4), rgba(0, 0, 0, 0.4)), url(<?= base_url() ?>assets/inventory.jpg);
+      background: linear-gradient(rgba(0, 0, 0, .4), rgba(0, 0, 0, 0.4)), url('<?= base_url() ?>assets/inventory.jpg');
       background-position: center;
       background-size: cover;
       background-repeat: no-repeat;
@@ -56,15 +56,15 @@
 </head>
 
 <body class="bg-default">
-  <div class="loginfail" data-flashdata="<?= $this->session->flashdata('loginfail') ?>"></div>
   <div class="auth-wrapper w-60">
     <div class="container-fluid h-100">
       <div class="row flex-row h-100 justify-content-center">
+        <div class="loginfail" data-flashdata="<?= $this->session->flashdata('loginfail') ?>"></div>
         <div class="col-md-7 my-auto p-0">
           <div class="card">
             <div class="authentication-form mx-auto">
               <div class="logo-centered d-flex justify-content-center">
-                <img src="<?= base_url() ?>assets/adhirainventory.png" alt="" style="width:200px;">
+                <img src="<?= base_url() ?>assets/adhira-komponen.png" alt="" style="width:250px;">
               </div>
               <form action="<?= site_url('auth/process') ?>" method="post">
                 <div class="form-group">

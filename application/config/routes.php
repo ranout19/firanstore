@@ -1,5 +1,5 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 /*
 | -------------------------------------------------------------------------
@@ -53,10 +53,8 @@ $route['default_controller'] = 'dashboard';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
-$route['stock/in'] = 'stock/stockInData';
-$route['stock/in/add'] = 'stock/stockInAdd';
-$route['stock/in/del/(:num)/(:num)'] = 'stock/stockInDel';
+$route['stok/masuk/tambah'] = 'stok/stokMasukTambah';
+$route['stok/masuk/hapus/(:num)/(:num)'] = 'stok/stokMasukHapus';
 
-$route['stock/out'] = 'stock/stockOutData';
-$route['stock/out/add'] = 'stock/stockOutAdd';
-$route['stock/out/del/(:num)/(:num)'] = 'stock/stockOutDel';
+$route['stok/keluar/tambah'] = 'stok/stokKeluarTambah';
+$route['stok/keluar/hapus/(:num)/(:num)'] = 'stok/stokKeluarHapus';

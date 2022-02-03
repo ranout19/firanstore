@@ -1,21 +1,19 @@
-<?php 
+<?php
 
-Class Userlogin{
+class Userlogin
+{
 
 	protected $ci;
 
 	function __construct()
 	{
-		$this->ci =& get_instance();
+		$this->ci = &get_instance();
 	}
 
 	function user_login()
 	{
-		$this->ci->load->model('user_m');
+		$this->ci->load->model('usermod');
 		$user_id = $this->ci->session->userdata('user_id');
-		return $this->ci->user_m->getUser($user_id)->row();
+		return $this->ci->usermod->getUser($user_id)->row();
 	}
-
 }
-
-?>

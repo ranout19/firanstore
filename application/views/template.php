@@ -4,12 +4,12 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <title>Adhirajasa Inventory | <?= $this->userlogin->user_login()->level == 1 ? 'Admin' : 'Pegawai' ?></title>
+  <title>Adhirajasa Komponen | <?= $this->userlogin->user_login()->level == 1 ? 'Admin' : 'Pegawai' ?></title>
   <meta name="description" content="">
   <meta name="keywords" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <link rel="icon" href="<?= base_url() ?>assets/adhiralogo.svg" type="image/x-icon" />
+  <link rel="icon" href="<?= base_url() ?>assets/komponen.png" type="image/x-icon" />
   <link rel="stylesheet" href="<?= base_url() ?>assets/plugins/bootstrap/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="<?= base_url() ?>assets/plugins/fontawesome-free/css/all.min.css">
   <link rel="stylesheet" href="<?= base_url() ?>assets/plugins/icon-kit/dist/css/iconkit.min.css">
@@ -27,11 +27,33 @@
   <style type="text/css">
     @font-face {
       font-family: semua;
-      src: url(<?= base_url() ?>assets/font/Montserrat-Regular.ttf);
+      src: url('<?= base_url() ?>assets/font/Montserrat-Regular.ttf');
+    }
+
+    .form-control {
+      font-size: 12px !important;
+    }
+
+    .badge,
+    .btn {
+      font-weight: normal !important;
     }
 
     * {
       font-family: semua;
+    }
+
+    .table thead th {
+      font-size: 12px !important;
+    }
+
+    .badge-yellow {
+      background-color: #ffc107 !important;
+    }
+
+    .card .card-header h3 {
+      font-size: 15px !important;
+
     }
 
     .wrapper .page-wrap .app-sidebar .sidebar-content .nav-container .navigation-main .nav-item.active::after {
@@ -228,8 +250,67 @@
     html body .dataTables_scrollHeadInner .table {
       width: 100% !important;
     }
-    .table.dataTable thead>tr>th.sorting_asc, table.dataTable thead>tr>th.sorting_desc, table.dataTable thead>tr>th.sorting, table.dataTable thead>tr>td.sorting_asc, table.dataTable thead>tr>td.sorting_desc, table.dataTable thead>tr>td.sorting {
+
+    .table.dataTable thead>tr>th.sorting_asc,
+    table.dataTable thead>tr>th.sorting_desc,
+    table.dataTable thead>tr>th.sorting,
+    table.dataTable thead>tr>td.sorting_asc,
+    table.dataTable thead>tr>td.sorting_desc,
+    table.dataTable thead>tr>td.sorting {
       padding-right: 11px !important;
+    }
+
+    .select {
+      font-size: 11px !important;
+    }
+
+    #modal-detail .modal-body {
+      padding: 0.4rem !important;
+    }
+
+    .card .card-body .dataTables_wrapper .dataTables_paginate .pagination .page-item.active .page-link {
+      background: #19b5fe !important;
+      color: white !important;
+    }
+
+    .select2-container--default .select2-results__option--highlighted[aria-selected] {
+      background-color: #ddd !important;
+      color: black !important;
+    }
+
+    /* width */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    /* Track */
+    ::-webkit-scrollbar-track {
+      border-radius: 10px;
+    }
+
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+      background: #bbb;
+      border-radius: 10px;
+    }
+
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+      background: #aaa;
+    }
+
+    #modal-detail th,
+    #modal-detail td {
+      border: none !important
+    }
+
+    .wrapper .page-wrap .app-sidebar .sidebar-content .nav-container .navigation-main .nav-item a i {
+      font-size: 19px !important;
+      vertical-align: -3px !important;
+    }
+
+    .wrapper .page-wrap .app-sidebar .sidebar-content .nav-container .navigation-main .nav-item a span {
+      font-size: 12.5px !important;
     }
   </style>
 </head>
@@ -251,7 +332,7 @@
           </div>
           <div class="top-menu d-flex align-items-center">
 
-            <a class="dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span><?= $this->userlogin->user_login()->level == 1 ? 'Admin' : 'Chasier' ?></span>
+            <a class="dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span><?= $this->userlogin->user_login()->level == 1 ? 'Admin' : 'Pegawai' ?></span>
               <div class="dropdown"><button type="button" class="nav-link"><i class="ik ik-user"></i></button>
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
@@ -270,7 +351,7 @@
       <div class="sidebar-header">
         <a class="header-brand" href="<?= base_url('dashboard') ?>">
           <div class="logo-img">
-            <img src="<?= base_url() ?>assets/adhiralogo.svg" class="header-brand-img" alt="Firan Store" style="width: 20px; margin-left: 5px;">
+            <img src="<?= base_url() ?>assets/komponens.png" class="header-brand-img" style="width: 28px;">
           </div>
         </a>
         <?php
@@ -289,48 +370,32 @@
             <div class="nav-item <?= $this->uri->segment(1) == 'dashboard' ? 'active' : '' ?>">
               <a href="<?= site_url('dashboard') ?>"><i class="ik ik-layers"></i><span>Dashboard</span></a>
             </div>
-            <?php if ($this->userlogin->user_login()->level == 1) { ?>
-              <div class="nav-item <?= $this->uri->segment(1) == 'transaction' ? 'active' : '' ?>">
-                <a href="<?= site_url('transaction') ?>"><i class="ik ik-shopping-cart"></i><span>Transaksi</span></a>
-              </div>
-              <div class="nav-item <?= $this->uri->segment(1) == 'payment' ? 'active' : '' ?>">
-                <a href="<?= site_url('payment') ?>"><i class="ik ik-dollar-sign"></i><span>Pembayaran</span></a>
-              </div>
-              <div class="nav-item <?= $this->uri->segment(1) == 'supplier' ? 'active' : '' ?>">
-                <a href="<?= site_url('supplier') ?>"><i class="ik ik-truck"></i><span>Supplier</span></a>
-              </div>
-              <div class="nav-item <?= $this->uri->segment(1) == 'costumer' ? 'active' : '' ?>">
-                <a href="<?= site_url('costumer') ?>"><i class="ik ik-users"></i><span>Pelanggan</span></a>
-              </div>
-            <?php } ?>
-            <div class="nav-item has-sub <?= $this->uri->segment(1) == 'category' || $this->uri->segment(1) == 'unit' || $this->uri->segment(1) == 'item' ? 'active open' : '' ?>">
-              <a href="#"><i class="ik ik-shopping-bag"></i><span>Produk</span></a>
-              <div class="submenu-content">
-                <a href="<?= site_url('category') ?>" class="menu-item <?= $this->uri->segment(1) == 'category' ? 'active' : '' ?>" style="<?= $this->uri->segment(1) == 'category' ? 'color: #fff' : 'color: #cecdcd' ?>;"><i class="ik ik-disc" style=" font-size: 13px; position: absolute; top: 13px; <?= $this->uri->segment(1) == 'category' ? 'color: #fff' : 'color: #cecdcd' ?>;"></i>
-                  <p style="font-size: 13px; margin-left: 20px; margin-bottom: 0;">Kategori</p>
-                </a>
-                <a href="<?= site_url('unit') ?>" class="menu-item <?= $this->uri->segment(1) == 'unit' ? 'active' : '' ?>" style="<?= $this->uri->segment(1) == 'unit' ? 'color: #fff' : 'color: #cecdcd' ?>;"><i class="ik ik-disc" style=" font-size: 13px; position: absolute; top: 13px; <?= $this->uri->segment(1) == 'unit' ? 'color: #fff' : 'color: #cecdcd' ?>;"></i>
-                  <p style="font-size: 13px; margin-left: 20px; margin-bottom: 0;">Satuan</p>
-                </a>
-
-                <a href="<?= site_url('item') ?>" class="menu-item <?= $this->uri->segment(1) == 'item' ? 'active' : '' ?>" style="<?= $this->uri->segment(1) == 'item' ? 'color: #fff' : 'color: #cecdcd' ?>;"><i class="ik ik-disc" style=" font-size: 13px; position: absolute; top: 13px; <?= $this->uri->segment(1) == 'item' ? 'color: #fff' : 'color: #cecdcd' ?>;"></i>
-                  <p style="font-size: 13px; margin-left: 20px; margin-bottom: 0;">Item</p>
-                </a>
-              </div>
+            <div class="nav-item <?= $this->uri->segment(1) == 'barang' ? 'active' : '' ?>">
+              <a href="<?= site_url('barang') ?>"><i class="ik ik-package"></i><span>Data Barang</span></a>
             </div>
-            <div class="nav-item has-sub <?= $this->uri->segment(1) == 'stock' || $this->uri->segment(2) == 'in' || $this->uri->segment(2) == 'out' ? 'active open' : '' ?>">
-              <a href="#"><i class="ik ik-package"></i><span>Stok</span></a>
-              <div class="submenu-content">
-                <a href="<?= base_url('stock/in') ?>" class="menu-item <?= $this->uri->segment(2) == 'in' ? 'active' : '' ?>" style="<?= $this->uri->segment(2) == 'in' ? 'color: #fff' : 'color: #cecdcd' ?>;"><i class="ik ik-disc" style=" font-size: 13px; position: absolute; top: 13px; <?= $this->uri->segment(2) == 'in' ? 'color: #fff' : 'color: #cecdcd' ?>;"></i>
-                  <p style="font-size: 13px; margin-left: 20px; margin-bottom: 0;">Stok Masuk</p>
-                </a>
-                <a href="<?= base_url('stock/out') ?>" class="menu-item <?= $this->uri->segment(2) == 'out' ? 'active' : '' ?>"><i class="ik ik-disc" style=" font-size: 13px; position: absolute; top: 13px;"></i>
-                  <p style="font-size: 13px; margin-left: 20px; margin-bottom: 0;">Stok Keluar</p>
-                </a>
-              </div>
+            <div class="nav-item <?= $this->uri->segment(2) == 'masuk' ? 'active' : '' ?>">
+              <a href="<?= site_url('stok/masuk') ?>"><i class="ik ik-download"></i><span>Barang Masuk</span></a>
+            </div>
+            <div class="nav-item <?= $this->uri->segment(2) == 'keluar' ? 'active' : '' ?>">
+              <a href="<?= site_url('stok/keluar') ?>"><i class="ik ik-upload"></i><span>Barang Keluar</span></a>
+            </div>
+            <div class="nav-item <?= $this->uri->segment(1) == 'transaksi' ? 'active' : '' ?>">
+              <a href="<?= site_url('transaksi') ?>"><i class="ik ik-repeat"></i><span>Transaksi Barang</span></a>
             </div>
             <?php if ($this->userlogin->user_login()->level == 1) { ?>
               <div class="nav-lavel">Administrator</div>
+              <div class="nav-item <?= $this->uri->segment(1) == 'qrcode' ? 'active' : '' ?>">
+                <a href="<?= site_url('qrcode') ?>"><i class="fa fa-qrcode"></i><span>Device QRcode</span></a>
+              </div>
+              <div class="nav-item <?= $this->uri->segment(1) == 'grup' ? 'active' : '' ?>">
+                <a href="<?= site_url('grup') ?>"><i class="ik ik-box"></i><span>Data Grup</span></a>
+              </div>
+              <div class="nav-item <?= $this->uri->segment(1) == 'satuan' ? 'active' : '' ?>">
+                <a href="<?= site_url('satuan') ?>"><i class="ik ik-disc"></i><span>Data Satuan</span></a>
+              </div>
+              <div class="nav-item <?= $this->uri->segment(1) == 'gudang' ? 'active' : '' ?>">
+                <a href="<?= site_url('gudang') ?>"><i class="ik ik-home"></i><span>Data Gudang</span></a>
+              </div>
               <div class="nav-item <?= $this->uri->segment(1) == 'user' ? 'active' : '' ?>">
                 <a href="<?= site_url('user') ?>"><i class="ik ik-user-check"></i><span>User</span></a>
               </div>
@@ -373,7 +438,9 @@
           'aTargets': ['nosort']
         }]
       });
-      $(".select2").select2();
+      $(".select2").select2({
+        tags: true
+      });
     })
   </script>
 </body>

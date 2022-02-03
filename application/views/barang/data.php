@@ -1,11 +1,10 @@
-<div class="loginsuccess" data-flashdata="<?= $this->session->flashdata('loginsuccess') ?>"></div>
 <div class="page-header">
   <div class="row align-items-end mx-0" style="background: white; border-radius: 3px; box-shadow: 0 1px 15px rgba(0,0,0,0.04), 0 1px 6px rgba(0,0,0,0.04);">
     <div class="col-lg-8">
       <div class="page-header-title">
-        <i class="ik ik-layers"></i>
+        <i class="ik ik-package"></i>
         <div class="d-inline">
-          <h5>Dashboard</h5>
+          <h5>Barang</h5>
         </div>
       </div>
     </div>
@@ -15,86 +14,22 @@
           <li class="breadcrumb-item">
             <a href="<?= base_url('dashboard') ?>"><i class="ik ik-home"></i></a>
           </li>
-          <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
+          <li class="breadcrumb-item active" aria-current="page">Barang</li>
         </ol>
       </nav>
     </div>
   </div>
 </div>
-
-<div class="row clearfix">
-  <div class="col-lg-4 col-md-6 col-sm-12">
-    <div class="widget bg-info">
-      <div class="widget-body">
-        <div class="d-flex justify-content-between align-items-center">
-          <div class="state">
-            <h6>Total Barang Masuk</h6>
-            <h2><?= $barang_masuk ?? 0 ?></h2>
-          </div>
-          <div class="icon">
-            <i class="ik ik-download"></i>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="col-lg-4 col-md-6 col-sm-12">
-    <div class="widget bg-danger">
-      <div class="widget-body">
-        <div class="d-flex justify-content-between align-items-center">
-          <div class="state">
-            <h6>Total Barang Keluar</h6>
-            <h2><?= $barang_keluar ?? 0 ?></h2>
-          </div>
-          <div class="icon">
-            <i class="ik ik-upload"></i>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="col-lg-4 col-md-6 col-sm-12">
-    <div class="widget bg-success">
-      <div class="widget-body">
-        <div class="d-flex justify-content-between align-items-center">
-          <div class="state">
-            <h6>Total Semua Barang</h6>
-            <h2><?= $barangs ?? 0 ?></h2>
-          </div>
-          <div class="icon">
-            <i class="ik ik-package"></i>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <?php foreach ($gudangs as $gudang) : ?>
-    <div class="col-lg-4 col-md-6 col-sm-12">
-      <div class="widget bg-dark">
-        <div class="widget-body">
-          <div class="d-flex justify-content-between align-items-center">
-            <div class="state">
-              <h6>Total Barang <?= $gudang->gudang ?></h6>
-              <h2><?= $gudang->allstok ?? 0  ?></h2>
-            </div>
-            <div class="icon">
-              <i class="ik ik-home"></i>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  <?php endforeach; ?>
-</div>
-
 <div class="row">
   <div class="col-md-12">
+    <div class="flashdatawarning" data-flashdata="<?= $this->session->flashdata('warning') ?>"></div>
+    <div class="flashdata" data-flashdata="<?= $this->session->flashdata('success') ?>"></div>
     <div class="card">
       <div class="card-header">
-        <h3>Data Barang Yang Akan Habis</h3><a href="" style="position: absolute; right: 20px; padding: 10px;" class="badge bg-dark text-white ml-2"><i class="ik ik-refresh-cw" style="font-weight: 1000;"></i> Refresh</a>
+        <h3>Data Barang</h3><a href="<?= site_url('barang/tambah') ?>" style="position: absolute; right: 20px; padding: 10px;" class="badge badge-blue text-white"><i class="ik ik-plus" style="font-weight: 1000;"></i> Tambah</a>
       </div>
       <div class="card-body">
-        <table class="table table-hover w-100" id="data_table_dashboard">
+        <table id="data_table_barang" class="table table-hover w-100">
           <thead>
             <tr>
               <th style="border:none;" class="sorting_disable">No</th>
@@ -102,23 +37,25 @@
               <th style="border:none;">Kode</th>
               <th style="border:none;">Nama</th>
               <th style="border:none;">Stok</th>
-              <th style="border:none;">Opsi</th>
+              <th style="border:none; float: right; margin-right: 30px;">Opsi</th>
             </tr>
           </thead>
           <tbody>
             <?php
             $no = 1;
-            foreach ($stoks->result() as $stok) {
+            foreach ($barangs->result() as $barang) {
             ?>
               <tr>
                 <td style="width: 6%;padding-left: 20px;"><?= $no++ ?></td>
-                <td><img width="60px" style="border-radius: 4px;" src="<?= base_url('uploads/' . $stok->gambar) ?>" alt=""></td>
-                <td><?= $stok->kode_barang ?></td>
-                <td><?= $stok->nama ?></td>
-                <td><?= $stok->stok . ' ' . $stok->satuan ?></td>
+                <td><img width="60px" style="border-radius: 4px;" src="<?= base_url('uploads/' . $barang->gambar) ?>" alt=""></td>
+                <td><?= $barang->kode_barang ?></td>
+                <td><?= $barang->nama ?></td>
+                <td><?= $barang->stok . ' ' . $barang->satuan ?></td>
                 <td>
-                  <div>
-                    <a type="button" data-toggle="modal" data-target="#modal-detail" data-id="<?= $stok->id_barang ?>" data-nama="<?= $stok->nama ?>" data-kode_barang="<?= $stok->kode_barang ?>" data-satuan="<?= $stok->satuan ?>" data-stok="<?= $stok->stok ?>" data-grup="<?= $stok->grup ?>" data-sub_grup="<?= $stok->sub_grup ?>" data-label="<?= $stok->label ?>" data-nickname="<?= $stok->nickname ?>" class="btn btn-sm btn-warning detail-barang" style="padding: 5px 6px 6px 6px; background: #19B5FE; border-color: #19B5FE;"><i class="ik ik-info text-white" style="margin-right: -1px !important;"></i></a>
+                  <div class="d-flex justify-content-center" style="gap: 3px">
+                    <a type="button" data-toggle="modal" data-target="#modal-detail" data-id="<?= $barang->id_barang ?>" data-nama="<?= $barang->nama ?>" data-kode_barang="<?= $barang->kode_barang ?>" data-satuan="<?= $barang->satuan ?>" data-stok="<?= $barang->stok ?>" data-grup="<?= $barang->grup ?>" data-sub_grup="<?= $barang->sub_grup ?>" data-label="<?= $barang->label ?>" data-nickname="<?= $barang->nickname ?>" class="btn btn-sm btn-warning detail-barang" style="padding: 5px 6px 6px 6px; background: #19B5FE; border-color: #19B5FE;"><i class="ik ik-info text-white" style="margin-right: -1px !important;"></i></a>
+                    <a href="<?= site_url('barang/edit/' . $barang->id_barang) ?>" class="btn btn-sm btn-warning" style="padding: 5px 6px 6px 6px; background: #ffc800; border-color: #ffc800;"><i class="ik ik-edit text-white" style="margin-right: -1px !important;"></i></a>
+                    <a href="<?= site_url('barang/hapus/' . $barang->id_barang) ?>" class="hapus btn btn-sm btn-danger" style="padding: 5px 6px 6px 6px;"><i class="ik ik-trash-2 text-white" style="margin-right: -1px !important;"></i></a>
                   </div>
                 </td>
               </tr>
@@ -212,7 +149,7 @@
 </script>
 <script>
   $(document).ready(function() {
-    $('#data_table_dashboard').DataTable({
+    $('#data_table_barang').DataTable({
       scrollX: true,
       "columnDefs": [{
           "targets": [5],
